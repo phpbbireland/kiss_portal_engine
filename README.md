@@ -1,5 +1,4 @@
-New Git location for Kiss Portal Engine 2.0.0
-
+**kiss_portal_engine**  
 Main folder (kiss_portal_engine), updates in (2026 directory)... 
 
 Additional experimental folder may apply (optional)...
@@ -9,6 +8,3 @@ All updates will be separated into their own folder (updates)...
 **Notes for 2026**  
 I don't have time to fully support the portal but have updated files to work with phpBB 3.3.15 and uploaded to the *2026* Folder  
 No errors on install, appears to work fine, some blocks require edits before including...  
-
-
-
