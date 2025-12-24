@@ -1,0 +1,892 @@
+/* =========================================================
+   LSF CUSTOM STYLESHEET – CLEAN RESET
+   ========================================================= */
+
+
+/* =========================================================
+   SECTION 1 – LSF TOP NAVIGATION BAR
+   (Main menu: Home / Forum / About / Trade Locator / Sponsors / Contact)
+   ========================================================= */
+
+#lsf-nav {
+    background: transparent;       /* let phpBB header colour show */
+    margin: 0 0 0 -4px;	 	   /* nudge further left if needed */
+    padding: 4px 0px;
+    border: none;
+    box-sizing: border-box;
+}
+
+#lsf-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-width: 960px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;   /* left align, like original menu */
+    align-items: center;
+    gap: 4px;                      /* tight spacing between items */
+}
+
+#lsf-nav li {
+    margin: 0;
+    padding: 0;
+}
+
+#lsf-nav a {
+    display: inline-block;
+    box-sizing: border-box;        /* keep size stable */
+    padding: 3px 7px;              /* compact padding so words sit closer */
+    font-size: 13px;               /* slightly larger than default */
+    font-weight: bold;
+    line-height: 1.4;
+    text-decoration: none;
+    color: #105289;
+    border-radius: 3px;
+    border: 1px solid transparent; /* same border width normal + hover */
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+#lsf-nav a:hover,
+#lsf-nav a:focus {
+    background-color: #e4eef9;
+    border-color: #c4d7ee;         /* only colour changes, not size */
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   SECTION 2 – BREADCRUMB TWEAKS
+   (Hide duplicate HOME / FORUM on custom pages,
+    show FORUM again on real forum sections)
+   ========================================================= */
+
+/* Slightly closer to nav bar */
+#nav-breadcrumbs {
+    margin-top: 4px;
+}
+
+/* Always hide the HOME crumb */
+#nav-breadcrumbs .crumb:has(a[data-navbar-reference="home"]) {
+    display: none !important;
+}
+
+/* By default, hide the FORUM (index) crumb as well */
+#nav-breadcrumbs .crumb:has(a[data-navbar-reference="index"]) {
+    display: none !important;
+}
+
+/* Re-show the FORUM crumb on real forum sections */
+body.section-index #nav-breadcrumbs .crumb:has(a[data-navbar-reference="index"]),
+body.section-viewforum #nav-breadcrumbs .crumb:has(a[data-navbar-reference="index"]),
+body.section-viewtopic #nav-breadcrumbs .crumb:has(a[data-navbar-reference="index"]),
+body.section-search #nav-breadcrumbs .crumb:has(a[data-navbar-reference="index"]) {
+    display: inline-block !important;
+}
+
+/* Extra safety: hide just the Home link in breadcrumbs */
+#nav-breadcrumbs a[data-navbar-reference="home"] {
+    display: none !important;
+}
+
+
+/* =========================================================
+   SECTION 3 – BASE LAYOUT FOR LSF PAGES
+   (About / Trade Locator / Sponsors / Contact etc.)
+   ========================================================= */
+
+/* Main wrapper for all custom pages */
+.lsf-page {
+    max-width: 960px;
+    margin: 0 auto 40px auto;
+    padding: 10px 0 30px 0;
+    font-size: 1.07em;
+}
+
+/* Titles */
+.lsf-page h1 {
+    font-size: 24px;
+    margin: 10px 0 12px 0;
+    font-weight: normal;
+}
+
+.lsf-page h2 {
+    font-size: 18px;
+    margin: 18px 0 8px 0;
+    font-weight: normal;
+}
+
+.lsf-page h3 {
+    font-size: 16px;
+    margin: 14px 0 6px 0;
+    font-weight: normal;
+}
+
+/* Body text */
+.lsf-page p {
+    margin: 0 0 10px 0;
+    line-height: 1.5;
+}
+
+/* Lists */
+.lsf-page ul {
+    margin: 0 0 12px 20px;
+    padding-left: 18px;
+}
+
+.lsf-page li {
+    margin-bottom: 4px;
+}
+
+/* Links */
+.lsf-page a {
+    color: #105289;
+    text-decoration: underline;
+}
+
+.lsf-page a:hover,
+.lsf-page a:focus {
+    text-decoration: none;
+}
+
+/* Horizontal rules */
+.lsf-page hr {
+    border: 0;
+    border-top: 1px solid #d0d9e2;
+    margin: 18px 0;
+}
+
+
+/* =========================================================
+   SECTION 4 – GRID & LAYOUT HELPERS (Used for About blocks)
+   ========================================================= */
+
+.lsf-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 0 0 24px 0;
+}
+
+.lsf-grid-3 > * {
+    flex: 1 1 calc(33.333% - 11px);
+    min-width: 220px;
+}
+
+.lsf-grid-2 > * {
+    flex: 1 1 calc(50% - 8px);
+    min-width: 260px;
+}
+
+/* Stack to single column on narrow screens */
+@media (max-width: 768px) {
+    .lsf-grid-3 > *,
+    .lsf-grid-2 > * {
+        flex: 1 1 100%;
+        min-width: 0;
+    }
+}
+
+
+/* =========================================================
+   SECTION 5 – INFO / SUMMARY CARDS & BUTTONS
+   (About “Visit the forum / Trade Locator / Sponsors” etc.)
+   ========================================================= */
+
+.lsf-about-block,
+.lsf-sponsor-summary-box,
+.lsf-contact-box {
+    background: #f5f7fb;
+    border: 1px solid #d0d9e2;
+    border-radius: 4px;
+    padding: 16px 18px;
+    box-sizing: border-box;
+}
+
+.lsf-about-block h2,
+.lsf-sponsor-summary-box h2,
+.lsf-contact-box h2 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.lsf-about-block p,
+.lsf-sponsor-summary-box p,
+.lsf-contact-box p {
+    margin-bottom: 8px;
+}
+
+/* CTA / link-style button */
+.lsf-button,
+.lsf-link-button {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 3px;
+    border: 1px solid #0c5ea6;
+    background-color: #0c5ea6;
+    color: #fff !important;
+    text-decoration: none;
+    font-size: 13px;
+    cursor: pointer;
+    line-height: 1.4;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.lsf-button:hover,
+.lsf-link-button:hover,
+.lsf-button:focus,
+.lsf-link-button:focus {
+    background-color: #094a7a;
+    border-color: #094a7a;
+    text-decoration: none;
+}
+
+/* Tier titles inside sponsor boxes (Principal Sponsor, Gold Sponsors, etc.) */
+.lsf-page .lsf-sponsor-tier h3 {
+    margin: 0 0 6px 0;
+    font-size: 16px;
+    font-weight: bold !important;   /* force bold, overrides base h3 rule */
+    color: #0c5ea6;
+}
+
+
+
+
+/* =========================================================
+   SECTION 5B – FOUNDERS BLOCKS (About Page)
+   ========================================================= */
+
+.lsf-founders-grid {
+    margin-top: 18px;
+}
+
+/* Each founder card */
+.lsf-founder-block {
+    text-align: left;          /* keep text left-aligned */
+}
+
+/* Founder photos – centred, fixed height */
+.lsf-founder-photo {
+    height: 150px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 10px;
+    border-radius: 4px;
+}
+
+/* Founder name – override .lsf-page h3 */
+.lsf-founder-block .lsf-founder-name {
+    font-size: 18px;           /* title size */
+    font-weight: bold;
+    color: #0c5ea6;            /* LSF blue */
+    margin: 10px 0 6px 0;
+}
+
+/* Optional role line under name */
+.lsf-founder-block .lsf-founder-role {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+
+
+
+/* =========================================================
+   SECTION 6 – SPONSORS PAGE (Logo grid etc.)
+   ========================================================= */
+
+.lsf-sponsor-tier {
+    margin: 0 0 24px 0;
+    padding: 14px 18px 16px;
+    border-radius: 4px;
+    border: 1px solid #d0d9e2;
+    background: #f7fafc;
+}
+
+/* Principal gets cream background + gold border */
+.lsf-tier-principal {
+    background: #fff7df;
+    border-color: #e0b45a;
+}
+
+/* Others share pale background, only border colour changes */
+.lsf-tier-platinum  { border-color: #b8cbe6; }
+.lsf-tier-gold      { border-color: #f0b84a; }
+.lsf-tier-silver    { border-color: #c0c8d8; }
+.lsf-tier-bronze    { border-color: #e28c45; }
+.lsf-tier-media     { border-color: #4a90c7; }
+
+.lsf-sponsor-tier-header {
+    margin-bottom: 8px;
+}
+
+.lsf-sponsor-tier-title {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #0c5ea6;
+}
+
+.lsf-sponsor-tier-subtitle {
+    font-size: 0.70rem;
+    color: #666;
+    margin-top: 2px;
+}
+
+/* Logo grid – EXACTLY 4 per row on desktop */
+.lsf-sponsor-logos {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    justify-content: center;   /* <-- THIS CENTRES THE WHOLE GRID */
+    justify-items: center;     /* centres individual logos in their cells */
+    align-items: center;
+    row-gap: 18px;
+    column-gap: 26px;
+}
+
+.lsf-sponsor-logo-link {
+    display: inline-block;
+}
+
+/* Logos themselves – no card, just the image */
+.lsf-sponsor-logo {
+    display: block;
+    max-height: 72px;      /* keeps SCC / GEO_BIZ / others consistent */
+    width: auto;
+    height: auto;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+/* On smaller screens, reduce columns so it doesn’t squash */
+@media (max-width: 900px) {
+    .lsf-sponsor-logos {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .lsf-sponsor-logos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+
+
+/* =========================================================
+   SECTION 7 – TRADE LOCATOR PAGE
+   (Iframe embed styling – clean, full-width box)
+   ========================================================= */
+
+.lsf-locator {
+    margin-top: 10px;
+}
+
+.lsf-locator-embed {
+    border: 1px solid #d0d9e2;
+    border-radius: 4px;
+    background: #f5f7fb;
+    padding: 10px;
+    overflow: hidden;          /* hide any stray scrollbars around the iframe */
+}
+
+/* The iframe itself */
+#lsf-locator-iframe {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 650px;             /* nice tall area so users see everything */
+    border: 0;
+}
+
+/* Give mobile devices a little more height */
+@media (max-width: 640px) {
+    #lsf-locator-iframe {
+        height: 720px;
+    }
+}
+
+/* =========================================================
+   SECTION 8 – MOBILE NAV / BREADCRUMB SMALL TWEAKS
+   ========================================================= */
+
+@media (max-width: 600px) {
+    #lsf-nav {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
+    #lsf-nav a {
+        font-size: 12px;
+        padding: 3px 6px;
+    }
+
+    .lsf-page {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+}
+
+
+/* =========================================================
+   SECTION 9 – PORTAL / EVENTS WIDGET (if used)
+   ========================================================= */
+
+.lsf-events-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.lsf-events-list li {
+    margin-bottom: 6px;
+    padding-bottom: 4px;
+    border-bottom: 1px dotted #ccc;
+}
+
+/* =========================================================
+   SECTION 10 – CONTACT PAGE (GENERAL LAYOUT)
+   ========================================================= */
+
+.lsf-contact-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.lsf-contact-main {
+    flex: 2 1 0;
+}
+
+.lsf-contact-side {
+    flex: 1 1 220px;
+}
+
+/* Stack on narrow screens */
+@media (max-width: 768px) {
+    .lsf-contact-columns {
+        flex-direction: column;
+    }
+}
+
+
+/* =========================================================
+   SECTION 11 – CONTACT ADMIN FORM – INTRO PANEL
+   ========================================================= */
+
+.lsf-contactadmin-intro {
+    background: #f5f7fb;
+    border: 1px solid #d0d9e2;
+    border-radius: 4px;
+    padding: 12px 14px;
+    margin-bottom: 18px;
+    font-size: 0.95em;
+}
+
+.lsf-contactadmin-intro p {
+    margin: 0;
+}
+
+
+/* =========================================================
+   SECTION 12 – BASIC CONTACT ADMIN FORM TIDY
+   ========================================================= */
+
+.lsf-contactadmin-form-wrapper {
+    max-width: 720px;
+    margin-top: 10px;
+}
+
+.lsf-contactadmin-form-wrapper fieldset {
+    border-radius: 4px;
+}
+
+/* =========================================================
+   SECTION 13 – HIDE DUPLICATE "CONTACT US" IN TOP BAR
+   (removes Contact Admin extension link only)
+   ========================================================= */
+
+/* phpBB 3.3+: hide the <li> inserted after FAQ in the top navbar */
+#nav-main li:has(> a[rel="help"]) + li {
+    display: none !important;
+}
+
+/* Fallback for browsers without :has() support */
+#nav-main a[href*="app.php/contactadmin"],
+#nav-main a[href*="mode=contactadmin"] {
+    display: none !important;
+}
+
+
+/* =========================================================
+   SECTION 14 – HOME LAYOUT – 3 COLUMNS (portal-style)
+   (Used if you switch to lsf-home-layout with left/centre/right)
+   ========================================================= */
+
+.lsf-home-layout {
+    display: grid;
+    grid-template-columns: 180px minmax(0, 1fr) 180px;
+    gap: 16px;
+    margin-top: 10px;
+}
+
+/* Each column stacks its panels vertically */
+.lsf-home-column {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Panel styling */
+.lsf-home-panel {
+    background: #d8e6f5;
+    border: 1px solid #4a90c7;
+    border-radius: 4px;
+    padding: 8px 10px;
+    font-size: 0.9rem;
+}
+
+/* PANEL HEADINGS */
+.lsf-home-column .lsf-home-panel h2 {
+    margin: 0 0 6px 0 !important;
+    padding-bottom: 3px !important;
+    border-bottom: 1px solid #bdd0e8 !important;
+    font-size: 0.95rem !important;
+    font-weight: bold !important;
+    line-height: 1.1 !important;
+    color: #003366 !important;
+}
+
+/* Lists inside home panels */
+.lsf-home-panel ul {
+    margin: 4px 0;
+    padding-left: 16px;
+}
+
+.lsf-home-panel li {
+    margin-bottom: 3px;
+}
+
+/* Responsive – stack columns on mobile */
+@media (max-width: 800px) {
+    .lsf-home-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================================
+   SECTION 15 – WEBSITE HOMEPAGE (current layout)
+   ========================================================= */
+
+.lsf-home-v2 {
+    margin-top: 10px;
+}
+
+/* Hero / intro at the top of the homepage */
+.lsf-home-hero {
+    background: #d8e6f5;
+    border: 1px solid #4a90c7;
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+}
+
+.lsf-home-hero h1 {
+    margin: 0 0 6px 0;
+    font-size: 1.6rem;
+}
+
+.lsf-home-hero p {
+    margin: 4px 0 0 0;
+}
+
+/* Main 2-column layout: content + sponsor sidebar */
+.lsf-home-layout-v2 {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+/* Stack on mobile */
+@media (max-width: 900px) {
+    .lsf-home-layout-v2 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Main content area (centre boxes) */
+.lsf-home-main section {
+    margin-bottom: 24px;
+    background: #f5f7fb;
+    border: 1px solid #dde5f2;
+    border-radius: 6px;
+    padding: 16px 18px;
+}
+
+.lsf-home-main h2 {
+    margin: 0 0 8px 0;
+    font-size: 1.05rem;
+}
+
+/* Make body text in main boxes NON-bold */
+.lsf-home-main section,
+.lsf-home-main p,
+.lsf-home-main p *,
+.lsf-home-main li,
+.lsf-home-main li * {
+    font-weight: normal !important;
+}
+
+.lsf-home-main p {
+    margin: 4px 0 0 0;
+}
+
+/* Sidebar sponsor cards */
+.lsf-home-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.lsf-sponsor-card {
+    background: #d8e6f5;
+    border: 1px solid #4a90c7;
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 0.9rem;
+}
+
+.lsf-sponsor-card h2 {
+    margin: 0 0 6px 0;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #bdd0e8;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+/* HIDE descriptive text under sponsor ads – just show banner */
+.lsf-sponsor-card p {
+    display: none;
+}
+
+.lsf-sponsor-ad {
+    text-align: center;
+}
+
+/* ------------------------------------------------------------
+   SECTION 16 - HOME PANELS – make any body text normal weight (safety net)
+   ------------------------------------------------------------ */
+.lsf-home-panel,
+.lsf-home-panel p,
+.lsf-home-panel p *,
+.lsf-home-panel li,
+.lsf-home-panel li * {
+    font-weight: normal !important;
+}
+
+.lsf-home-hero p,
+.lsf-home-panel p {
+    font-size: 0.80rem !important;
+    line-height: 1.45 !important;
+    font-weight: normal !important;
+    color: #333 !important; /* slightly softer black */
+    margin-bottom: 6px !important;
+}
+
+/* =========================================
+   SECTION 17 - SPONSOR LOGOS – 4 PER ROW & CENTRED
+   ========================================= */
+
+.lsf-sponsor-logos {
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center !important;   /* centre whole row */
+    gap: 16px 24px;                       /* vertical x horizontal spacing */
+}
+
+/* Each logo wrapper: 4 per row on desktop */
+.lsf-sponsor-logo-link {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex: 0 1 calc(33.333% - 24px);          /* 4 p/r 25% or 5 p/r 20% or 3 p/r 33.333% */
+    box-sizing: border-box;
+}
+
+.lsf-sponsor-logo {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 900px) {
+    .lsf-sponsor-logo-link {
+        flex: 0 1 33.333%;   /* 3 per row on tablets */
+    }
+}
+
+@media (max-width: 600px) {
+    .lsf-sponsor-logo-link {
+        flex: 0 1 50%;       /* 2 per row on phones */
+    }
+}
+
+/* =========================================================
+   SECTION 18 – STATS PAGE (matches LSF About / card style)
+   ========================================================= */
+
+.lsf-stats .lsf-stats-subtitle {
+    margin: -6px 0 14px 0;
+    color: #666;
+    font-size: 0.95em;
+}
+
+/* spacing between rows */
+.lsf-stats .lsf-stats-grid {
+    margin-bottom: 16px;
+}
+
+/* Card-style stats (if you ever use .lsf-stat-card again) */
+.lsf-stats .lsf-stat-card {
+    text-align: left;
+}
+
+.lsf-stats .lsf-stat-card .lsf-stat-number {
+    font-size: 34px;
+    font-weight: bold;
+    color: #0c5ea6;
+    line-height: 1.1;
+    margin-bottom: 6px;
+}
+
+.lsf-stats .lsf-stat-card .lsf-stat-label {
+    font-size: 13px;
+    color: #333;
+}
+
+.lsf-stats .lsf-stats-footnote {
+    font-size: 12px;
+    color: #666;
+    margin-top: 6px;
+}
+
+.lsf-stats .lsf-contactadmin-intro {
+    margin-bottom: 14px;
+}
+
+/* Stats page – match About page (white background) */
+body.lsf-stats-body {
+  background: #ffffff !important;
+}
+
+body.lsf-stats-body .lsf-page {
+  background: #ffffff !important;
+}
+
+body.lsf-stats-body .lsf-stats h1 {
+  color: #111;
+  font-weight: 700;
+}
+
+body.lsf-stats-body .lsf-stats p,
+body.lsf-stats-body .lsf-stats .lsf-stats-subtitle {
+  color: #333;
+}
+
+
+
+
+/* =========================================================
+   SECTION 18a – STATS TILES (coloured, premium)
+   ========================================================= */
+
+.lsf-stats .lsf-stats-grid{
+  margin: 18px 0;
+}
+
+.lsf-stats .lsf-stat-tile{
+  border-radius: 16px;
+  padding: 26px 24px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.10);
+  transform: translateY(0);
+  transition: transform .18s ease, box-shadow .18s ease;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.lsf-stats .lsf-stat-tile:hover{
+  transform: none;
+  box-shadow: 0 16px 34px rgba(0,0,0,0.16);
+}
+
+.lsf-stats .lsf-stat-tile:before{
+  content:"";
+  position:absolute;
+  inset:-40% -30% auto -30%;
+  height: 220px;
+  transform: rotate(-8deg);
+  background: rgba(255,255,255,0.14);
+  pointer-events:none;
+}
+
+/* IMPORTANT: scoped to tiles so it doesn't get overridden */
+.lsf-stats .lsf-stat-tile .lsf-stat-number{
+  font-size: 44px;
+  font-weight: 800;
+  letter-spacing: .3px;
+  line-height: 1.05;
+  margin: 0 0 10px 0;
+  color:#fff !important;
+}
+
+.lsf-stats .lsf-stat-tile .lsf-stat-label{
+  font-size: 13px;
+  letter-spacing: .2px;
+  text-transform: none;
+  color: rgba(255,255,255,0.92);
+}
+
+/* Colour themes */
+.lsf-stats .stat-red{    background: linear-gradient(135deg, #b11f2a, #8f1420); }
+.lsf-stats .stat-dark{   background: linear-gradient(135deg, #1f2a31, #11181d); }
+.lsf-stats .stat-green{  background: linear-gradient(135deg, #2f7a3a, #1f5e2a); }
+.lsf-stats .stat-purple{ background: linear-gradient(135deg, #7b2bbf, #5b1f99); }
+.lsf-stats .stat-indigo{ background: linear-gradient(135deg, #3e3bb3, #2a277f); }
+.lsf-stats .stat-orange{ background: linear-gradient(135deg, #e46b18, #b84c06); }
+
+/* Admin note – subtle but on-brand */
+.lsf-stats .lsf-contactadmin-intro{
+  background: #f3f7fb;
+  border: 1px solid #d7e6f7;
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+/* Force 3-up grid for stats tiles */
+.lsf-stats .lsf-stats-grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin: 18px 0;
+}
+
+@media (max-width: 900px){
+  .lsf-stats .lsf-stats-grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px){
+  .lsf-stats .lsf-stats-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
